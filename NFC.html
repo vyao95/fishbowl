@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="mobile.css">
+<link href=' http://fonts.googleapis.com/css?family=Avenir' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="animate.css">
+
+<script>
+
+
+
+ angular.module('submitExample', [])
+    .controller('ExampleController', ['$scope', function($scope) {
+      $scope.list = [];
+      $scope.isNewCustomer = false;
+      $scope.isFirstLand = true;
+      $scope.isShowProfile = false;
+      $scope.isShowSavings = false;
+      $scope.isShowDiscount = true;
+      $scope.isLiked = false;
+      $scope.isLikeClicked = false;
+      $scope.totalSavings = 0;
+      $scope.isExistingCustomer = false;
+"vegan":'yes',
+"q3":$scope.q3,
+}
+
+        
+          $scope.list.push(this.res);
+          $scope.text = '';
+          $scope.q1='';
+          $scope.q2='';
+          $scope.q3='';
+        $scope.isShowProfile = true;
+         $scope.isNewCustomer = false;
+       
+        $scope.displayProfileData();
+      };
+
+$scope.displayProfileData = function(){
+res_obj = $scope.existing_customers.filter(function (e){ return e["phone"] == $scope.phoneNumber;});
+      if(res_obj.length != 0){
+            $scope.isShowSavings = true;
+            $scope.isExistingCustomer = true;
+            $scope.isShowDiscount = false;
+      $scope.totalSavings = res_obj[0]["total_savings"]
+      }
+};
+
+$scope.liked = function(){
+$scope.isLikeClicked = true;
+$scope.isLiked = true;
+
+};
+
+$scope.disliked = function(){
+$scope.isLikeClicked = true;
+$scope.isLiked = false;
+
+};
+    }]);
+
+function liked(){
+$("#like").hide();
+$("#dislike").hide();
+document.getElementById("feedback").innerHTML = "Thank you. Please visit again!";
+}
+function disliked(){
+$("#like").hide();
+$("#dislike").hide();
+document.getElementById("feedback").innerHTML = "We are sorry to hear that. Would you care to elaborate?";
+document.getElementById("comments").style.visibility = "visible";
+document.getElementById("submitButton").style.visibility = "visible";
+}
+
+
+var toggleB = false;
+    var toggleM = false;
+    var toggleW = false;
+    var toggleS = false;
+    var toggleSm = false;
+    var toggleBo = false;
+    var toggleSh = false;
+    var toggleJ = false;
+    function saveVegan(){
+
+      $("#broccoli").toggleClass("imgActive");
+      toggleB = !toggleB;
+      if(toggleM == true){
+        $("#meat").toggleClass("imgActive");
+        toggleM = false;
+      }
+    }
+    function saveMeat(){
+      $("#meat").toggleClass("imgActive");
+      toggleM = !toggleM;
+      if(toggleB == true) {
+        $("#broccoli").toggleClass("imgActive");
+        toggleB = false;
+      }
+    }
+    function saveWorkout(){
+      $("#weight").toggleClass("imgActive");
+      toggleW = !toggleW;
+      if(toggleS == true) {
+        $("#sitDown").toggleClass("imgActive");
+        toggleS = false;
+      }
+    }
+    function saveSit(){
+      $("#sitDown").toggleClass("imgActive");
+      toggleS = !toggleS;
+      if(toggleW == true) {
+        $("#weight").toggleClass("imgActive");
+        toggleW = false;
+      }
+    }
+    function saveSmoothie(){
+      $("#smoothie").toggleClass("imgActive");
+      toggleSm = !toggleSm;
+      if(toggleBo == true) {
+        $("#yogurlBowl").toggleClass("imgActive");
+        toggleBo = false;
+      }
+    }
+    function saveYogurtBowl(){
+      $("#yogurtBowl").toggleClass("imgActive");
+      toggleBo = !toggleBo;
+      if(toggleSm == true) {
+        $("#smoothie").toggleClass("imgActive");
+        toggleSm = false;
+      }
+    }
+    function saveShot(){
+      $("#shot").toggleClass("imgActive");
+      toggleSh = !toggleSh;
+      if(toggleJ == true) {
+        $("#juice").toggleClass("imgActive");
+        toggleJ = false;
+      }
+    }
+    function saveJuice(){
+      $("#juice").toggleClass("imgActive");
+      toggleJ = !toggleJ;
+      if(toggleSh == true) {
+        $("#shot").toggleClass("imgActive");
+        toggleSh = false;
+      }
+    }
+
+</script>
+</head>
+
+<body ng-app="submitExample">
+<div ng-controller="ExampleController" class="container animated fadeInLeft" id="container" >
+
+
+<div class="row" ng-show="isFirstLand">
+<div class="col-xs-12 text-center" style="margin-bottom: 10px;">
+<img src="Jambajuice.png">
+</div>
+<div class="col-xs-12 text-center" style="font-size: 20px; margin-bottom: 10px;">
+Hello!
+</div>
+<div class="col-xs-12 text-center" style="font-size: 20px; margin-bottom: 20px;">
+<span style="color:#c60c46"> Welcome to <b>Jamba Juice</b>.</span>
+</div>
+<div class="col-xs-12">
+<form  ng-submit="submitPhone()" >
+<div class="form-group">
+<label for="phoneNumber">Please enter your phone Number:</label>
+<input type="phoneNumber" ng-model="phoneNumber" class="form-control" id="phoneNumber" placeholder="Ex: 408-209-1932"/>
+</div>
+<div class="text-center">
+<button type="submit" class="btn btn-default" value="Submit">Submit</button>
+</div>
+</form>
+  </div>
+  </div>
+ 
+
+
+
+<div class="container animated fadeInLeft" ng-show="isNewCustomer" >
+<div class="row">
+<div class="col-xs-12 text-center" style="margin-bottom: 10px;">
+<img src="Jambajuice.png">
+</div>
+<div class="col-xs-12 text-center" style="font-size: 20px; margin-bottom: 10px;">
+Please provide your name and email.
+</div>
+</div>
+
+
+<div class="col-xs-12">
+<form ng-submit="submitData()">
+<div class="form-group">
+<label for="name">Name:</label>
+<input type="name"  ng-model="firstName" class="form-control" id="name" placeholder="Johnny Appleseed"/>
+</div>
+<div class="form-group">
+<label for="email">Email:</label>
+<input type="email" ng-model="email" class="form-control" id="email" placeholder="starboy@gmail.com"/>
+</div>
+<fieldset class="form-group" style="margin-top:20px;">
+    <legend style="color:#C60C46;">1. Are you a vegan?</legend>
+              <div class="col-xs-1">
+              </div>
+              <div class="col-xs-5">
+              <img id="meat" src="meat.png" width="50" height="50"  onclick="saveMeat();"/>
+              </div>
+              <div class="col-xs-5">
+              <img id="broccoli" src="broccoli.png" width="50" height="50" onclick="saveVegan();"/>
+              </div>
+              <div class="col-xs-1">
+              </div>
+    </fieldset>
+          <fieldset class="form-group">
+              <legend style="color:#FBAD20;"">2. Do you work out?</legend>
+              <div class="col-xs-1">
+              </div>
+              <div class="col-xs-5">
+              <img id="weight" src="weight.png" width="50" height="50" onclick="saveWorkout();"/>
+              </div>
+              <div class="col-xs-5">
+              <img id="sitDown" src="sit-down.png" width="50" height="50" onclick="saveSit();"/>
+              </div>
+              <div class="col-xs-1">
+              </div>
+          </fieldset>
+          <fieldset class="form-group">
+              <legend style="color:#83BF21;">3. Smoothie or Yogurt bowl?</legend>
+              <div class="col-xs-1">
+              </div>
+              <div class="col-xs-5">
+              <img id="smoothie" src="milky.png" width="50" height="50" onclick="saveSmoothie();"/>
+              </div>
+              <div class="col-xs-5">
+              <img id="yogurtBowl" src="ice-cream.png" width="50" height="50" onclick="saveYogurtBowl();"/>
+              </div>
+              <div class="col-xs-1">
+              </div>
+          </fieldset>
+          <fieldset class="form-group">
+              <legend style="color:#4AA942;">4. Shots or juices?</legend>
+              <div class="col-xs-1">
+              </div>
+              <div class="col-xs-5">
+              <img id="shot" src="tequila.png" width="50" height="50" onclick="saveShot();"/>
+              </div>
+              <div class="col-xs-5">
+              <img id="juice" src="juice.png" width="50" height="50" onclick="saveJuice();"/>
+              </div>
+              <div class="col-xs-1">
+              </div>
+          </fieldset>
+
+    <div class="text-center">
+<button type="submit" style="margin-top:61px;margin-bottom: 60px;" class="btn btn-default">Submit</button>
+</div>
+</form>
+
+
+  </div>
+
+</div>
+
+
+<div class="container animated fadeInLeft" id="container-3"  ng-show="isShowProfile">
+<div class="row">
+<div class="col-xs-12 text-center" style="margin-bottom: 10px;">
+<img src="Jambajuice.png">
+</div>
+<div class="col-xs-12 text-center" style="font-size: 20px; margin-bottom: 10px;" ng-show="!isExistingCustomer">
+Hello <span style="color:#C60C46;">{{firstName}}</span>, thank you for finishing our survey!
+</div>
+<div class="col-xs-12 text-center" style="font-size: 20px; margin-bottom: 10px;" >
+<div>
+<div ng-show="isExistingCustomer">
+<b>Hi <span style="color:#C60C46;">{{firstName}}</span>, Good to have you back!</b>
+</div>
+</div>
+<div>
+<br>
+Based on your preferences, next time try our <span style="color:#C60C46;font-weight:bold;">delicious <br> dairy-free smoothies! </span>
+<br>
+<br>
+<img src="http://www.jambajuice.com/~/media/www/images/products/product/smoothies/classic-smoothies/aloha-pineapple-prod.ashx" alt="Smiley face" height="80" width="80" style="margin-right:20px;border-radius:40px;" >
+<img  style="border-radius:40px;" src="http://www.jambajuice.com/~/media/www/images/products/product/smoothies/classic-smoothies/chilli-mango-prod.ashx" alt="Smiley face" height="80" width="80">
+<br>
+<br>
+<div ng-show="isExistingCustomer">
+<b>
+Oh, And have a <span style="color:#FBAD20">10%</span> percent off! :)
+</b> 
+</div>
+</div>
+</div>
+<div class="col-xs-12 text-center" style="font-size: 20px; margin-bottom: 10px;" ng-show="isShowDiscount">
+A <span style="color:#FBAD20">10% </span>discount will be applied to your purchase :)
+</div>
+<div class="col-xs-12 text-center" style="font-size: 20px; margin-bottom: 10px;" ng-show="isShowSavings">
+                Our discounts have saved you <b><span style="color:#4AA942;">{{totalSavings}}</span> </b>so far! 
+            </div>
+<div class="col-xs-12 text-center" style="font-size: 20px; margin-bottom: 50px;">
+<span style="color:#4AA942;">Enjoy!</span>
+</div>
+<div class="col-xs-12 text-center" style="font-size: 20px;"">
+Please rate your experience with us today
+</div>
+<div class="text-center">
+<button type="button" id="like" class="btn btn-success btn-sm" onclick="liked()"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
+<button type="button" id="dislike" class="btn btn-danger btn-sm" onclick="disliked()"><span class="glyphicon glyphicon-thumbs-down"></span> Dislike</button>
+</div>
+<form >
+<div id="feedback" class="text-center">
+</div>
+<div id="comments" class="col-xs-12 form-group" style="visibility: hidden">
+  <label for="comment">Comments:</label>
+  <textarea class="form-control" rows="5" id="comment"></textarea>
+</div>
+<div class="text-center">
+<button type="submit" id="submitButton" class="btn btn-default" style="visibility: hidden;">Submit</button>
+</div>
+  </div>
+  </div>
+
+
+</div>
+ <div id="credits" style="font-size:1px;">
+  <div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+  </div>
+</body>
+</html>
