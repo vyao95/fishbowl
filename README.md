@@ -6,3 +6,5 @@ NFC.html - main file
 animate.css - stylesheet used for animations
 
 the rest - supporting image files
+
+Used: HTML, CSS, JS, Angular, Jquery
